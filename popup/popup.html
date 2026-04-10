@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h2>Unload Tabs</h2>
+  <div id="stats">
+    <span id="stat-total">Loading...</span>
+    <span id="stat-unload"></span>
+    <span id="stat-discarded"></span>
+    <span id="stat-pinned"></span>
+  </div>
+  <div class="options">
+    <label><input type="checkbox" id="skipPinned" checked> Skip pinned tabs</label>
+    <label><input type="checkbox" id="allWindows"> Include all windows</label>
+  </div>
+  <button id="unloadBtn" disabled>Unload Inactive Tabs</button>
+  <div id="result"></div>
+  <script src="../lib/tab-utils.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

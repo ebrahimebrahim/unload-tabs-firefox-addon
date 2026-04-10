@@ -1,0 +1,14 @@
+{
+  "name": "unload-tabs-firefox-addon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Firefox addon to unload inactive tabs and free memory",
+  "scripts": {
+    "test": "node --test test/tab-utils.test.js",
+    "lint": "web-ext lint",
+    "start": "web-ext run"
+  },
+  "devDependencies": {
+    "web-ext": "^8.0.0"
+  }
+}
