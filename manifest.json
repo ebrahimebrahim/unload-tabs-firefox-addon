@@ -6,7 +6,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "unload-tabs@peup.world",
-      "strict_min_version": "58.0"
+      "strict_min_version": "79.0"
     }
   },
   "icons": {

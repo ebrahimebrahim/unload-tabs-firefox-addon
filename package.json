@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node --test test/tab-utils.test.js",
     "lint": "web-ext lint",
-    "start": "web-ext run"
+    "start": "mkdir -p ${TMPDIR:-$HOME/tmp} && TMPDIR=${TMPDIR:-$HOME/tmp} web-ext run"
   },
   "devDependencies": {
     "web-ext": "^8.0.0"
