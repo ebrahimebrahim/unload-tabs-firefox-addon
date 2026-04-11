@@ -1,5 +1,6 @@
 # Unload Tabs - Firefox Addon
 
+[![CI](https://github.com/ebrahimebrahim/unload-tabs-firefox-addon/actions/workflows/ci.yml/badge.svg)](https://github.com/ebrahimebrahim/unload-tabs-firefox-addon/actions/workflows/ci.yml)
 [![Firefox Add-on](https://img.shields.io/badge/Firefox-Add--on-FF7139?logo=firefox-browser)](https://addons.mozilla.org/firefox/)
 
 

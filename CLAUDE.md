@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Repository
+
+https://github.com/ebrahimebrahim/unload-tabs-firefox-addon
+
 ## Commands
 
 - `npm test` — run unit tests (Node.js built-in test runner: `node --test`)
