@@ -1,7 +1,7 @@
 # Unload Tabs - Firefox Addon
 
 [![CI](https://github.com/ebrahimebrahim/unload-tabs-firefox-addon/actions/workflows/ci.yml/badge.svg)](https://github.com/ebrahimebrahim/unload-tabs-firefox-addon/actions/workflows/ci.yml)
-[![Firefox Add-on](https://img.shields.io/badge/Firefox-Add--on-FF7139?logo=firefox-browser)](https://addons.mozilla.org/firefox/)
+[![Firefox Add-on](https://img.shields.io/badge/Firefox-Add--on-FF7139?logo=firefox-browser)](https://addons.mozilla.org/firefox/addon/unload-tabs-button/)
 
 
 A lightweight Firefox addon that unloads all inactive tabs with one click, freeing memory on machines with limited RAM. Unloaded tabs stay visible in the tab bar — clicking one reloads it on demand.
@@ -16,26 +16,9 @@ A lightweight Firefox addon that unloads all inactive tabs with one click, freei
 - Supports light and dark Firefox themes
 - Requires Firefox 79+
 
-## Installation
+## Install
 
-### Temporary install (for development / testing)
-
-1. Open Firefox and navigate to `about:debugging`
-2. Click **"This Firefox"** in the left sidebar
-3. Click **"Load Temporary Add-on..."**
-4. Navigate to this project folder and select `manifest.json`
-5. The addon icon appears in the toolbar — click it to use
-
-> **Note:** Temporary addons are removed when Firefox restarts.
-
-### Using web-ext (recommended for development)
-
-```bash
-npm install
-npm start
-```
-
-This opens Firefox with the addon loaded and auto-reloads on file changes.
+**[Install from Firefox Add-ons](https://addons.mozilla.org/firefox/addon/unload-tabs-button/)**
 
 ## Usage
 
@@ -62,6 +45,10 @@ Unloaded tabs remain in the tab bar. When you click an unloaded tab, Firefox rel
 npm install
 ```
 
+### Load addon locally
+
+Load via `about:debugging` → "This Firefox" → "Load Temporary Add-on" → select `manifest.json`. Or run `npm start` to launch Firefox with auto-reload.
+
 ### Run tests
 
 ```bash
@@ -77,14 +64,6 @@ npm run lint
 ```
 
 Validates `manifest.json` and extension structure using `web-ext lint`.
-
-### Run in Firefox
-
-```bash
-npm start
-```
-
-Launches Firefox with the addon loaded. Watches for file changes and reloads automatically.
 
 ## How it works
 
