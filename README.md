@@ -1,5 +1,7 @@
 # Unload Tabs - Firefox Addon
 
+[![Firefox Add-on](https://img.shields.io/badge/Firefox-Add--on-FF7139?logo=firefox-browser)](https://addons.mozilla.org/firefox/)
+
 > **Disclaimer:** This extension is AI-generated slop. Use at your own risk.
 
 A lightweight Firefox addon that unloads all inactive tabs with one click, freeing memory on machines with limited RAM. Unloaded tabs stay visible in the tab bar — clicking one reloads it on demand.
