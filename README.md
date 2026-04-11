@@ -14,7 +14,7 @@ A lightweight Firefox addon that unloads all inactive tabs with one click, freei
 - Option to include tabs from all windows (off by default — only current window)
 - Preferences are remembered across sessions
 - Supports light and dark Firefox themes
-- Requires Firefox 58+
+- Requires Firefox 79+
 
 ## Installation
 
@@ -91,23 +91,3 @@ Launches Firefox with the addon loaded. Watches for file changes and reloads aut
 The addon uses Firefox's [`browser.tabs.discard()`](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/discard) API to unload tabs from memory without closing them. This is the same mechanism Firefox uses internally when it auto-discards tabs under memory pressure, but triggered manually by the user.
 
 The core filtering logic (which tabs to unload) is extracted into `lib/tab-utils.js` with no browser API dependencies, making it fully testable under Node.js.
-
-## Project structure
-
-```
-manifest.json          Extension manifest (Manifest V2)
-popup/
-  popup.html           Popup UI
-  popup.css            Styling (light + dark theme)
-  popup.js             UI controller — wires events to browser APIs
-lib/
-  tab-utils.js         Pure logic: tab filtering and counting (testable)
-icons/
-  icon.svg             Toolbar icon
-test/
-  tab-utils.test.js    Unit tests for tab-utils
-```
-
-## License
-
-MIT
