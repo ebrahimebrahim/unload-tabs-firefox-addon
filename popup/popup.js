@@ -51,11 +51,8 @@
         return;
       }
       const ids = getTabIds(toDiscard);
-      const count = ids.length;
       return browser.tabs.discard(ids).then(() => {
-        resultEl.textContent = `Unloaded ${count} tab${count !== 1 ? 's' : ''}.`;
-        resultEl.className = 'result-success';
-        refreshStats();
+        window.close();
       });
     }).catch(err => {
       resultEl.textContent = `Error: ${err.message}`;
