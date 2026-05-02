@@ -25,12 +25,6 @@ h2 {
   margin-bottom: 12px;
   font-size: 13px;
   line-height: 1.5;
-  display: flex;
-  flex-direction: column;
-}
-
-#stats span:empty {
-  display: none;
 }
 
 .options {

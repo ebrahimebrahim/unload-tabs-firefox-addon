@@ -116,45 +116,77 @@ describe('filterTabsToUnload', () => {
 // --- getTabStats ---
 
 describe('getTabStats', () => {
-  it('returns correct counts for a mixed set of tabs', () => {
+  it('excludes active and pinned tabs from total and loaded when skipPinned is true', () => {
     const stats = getTabStats(mockTabs, { skipPinned: true });
-    assert.strictEqual(stats.total, 5);
-    assert.strictEqual(stats.active, 1);
-    assert.strictEqual(stats.alreadyDiscarded, 1);
-    assert.strictEqual(stats.pinned, 1);
-    assert.strictEqual(stats.toUnload, 2);
+    assert.strictEqual(stats.total, 3);
+    assert.strictEqual(stats.loaded, 2);
   });
 
-  it('counts toUnload including pinned when skipPinned is false', () => {
+  it('includes pinned tabs but excludes active when skipPinned is false', () => {
     const stats = getTabStats(mockTabs, { skipPinned: false });
-    assert.strictEqual(stats.toUnload, 3);
+    assert.strictEqual(stats.total, 4);
+    assert.strictEqual(stats.loaded, 3);
   });
 
-  it('returns toUnload 0 when only active tab exists', () => {
-    const tabs = [{ id: 1, active: true, pinned: false, discarded: false }];
-    const stats = getTabStats(tabs, { skipPinned: true });
-    assert.strictEqual(stats.toUnload, 0);
-    assert.strictEqual(stats.total, 1);
-    assert.strictEqual(stats.active, 1);
+  it('defaults skipPinned to true when options omitted', () => {
+    const stats = getTabStats(mockTabs);
+    assert.strictEqual(stats.total, 3);
+    assert.strictEqual(stats.loaded, 2);
   });
 
-  it('returns pinned 0 when no pinned tabs', () => {
+  it('always excludes the active tab regardless of skipPinned', () => {
     const tabs = [
       { id: 1, active: true,  pinned: false, discarded: false },
       { id: 2, active: false, pinned: false, discarded: false },
     ];
+    assert.strictEqual(getTabStats(tabs, { skipPinned: true }).total, 1);
+    assert.strictEqual(getTabStats(tabs, { skipPinned: false }).total, 1);
+  });
+
+  it('reports total 0 when only the active tab is in scope', () => {
+    const tabs = [{ id: 1, active: true, pinned: false, discarded: false }];
     const stats = getTabStats(tabs, { skipPinned: true });
-    assert.strictEqual(stats.pinned, 0);
-    assert.strictEqual(stats.toUnload, 1);
+    assert.strictEqual(stats.total, 0);
+    assert.strictEqual(stats.loaded, 0);
+  });
+
+  it('reports loaded === total when no inactive tabs are discarded', () => {
+    const tabs = [
+      { id: 1, active: true,  pinned: false, discarded: false },
+      { id: 2, active: false, pinned: false, discarded: false },
+      { id: 3, active: false, pinned: false, discarded: false },
+    ];
+    const stats = getTabStats(tabs, { skipPinned: true });
+    assert.strictEqual(stats.total, 2);
+    assert.strictEqual(stats.loaded, 2);
+  });
+
+  it('reports loaded 0 when every in-scope inactive tab is discarded', () => {
+    const tabs = [
+      { id: 1, active: false, pinned: false, discarded: true },
+      { id: 2, active: false, pinned: false, discarded: true },
+    ];
+    const stats = getTabStats(tabs, { skipPinned: true });
+    assert.strictEqual(stats.total, 2);
+    assert.strictEqual(stats.loaded, 0);
   });
 
   it('handles empty tabs array', () => {
     const stats = getTabStats([], { skipPinned: true });
     assert.strictEqual(stats.total, 0);
-    assert.strictEqual(stats.active, 0);
-    assert.strictEqual(stats.alreadyDiscarded, 0);
-    assert.strictEqual(stats.pinned, 0);
-    assert.strictEqual(stats.toUnload, 0);
+    assert.strictEqual(stats.loaded, 0);
+  });
+
+  it('excludes tabs with undiscardable URLs', () => {
+    const tabs = [
+      { id: 1, active: true,  pinned: false, discarded: false, url: 'https://example.com' },
+      { id: 2, active: false, pinned: false, discarded: false, url: 'about:newtab' },
+      { id: 3, active: false, pinned: false, discarded: false, url: 'chrome://browser/content/' },
+      { id: 4, active: false, pinned: false, discarded: false, url: 'https://b.com' },
+    ];
+    const stats = getTabStats(tabs, { skipPinned: true });
+    assert.strictEqual(stats.total, 1);
+    assert.strictEqual(stats.loaded, 1);
   });
 });
 

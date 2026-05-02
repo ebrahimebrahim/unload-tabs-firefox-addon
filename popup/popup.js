@@ -1,10 +1,7 @@
 /* global filterTabsToUnload, getTabStats, getTabIds */
 
 (() => {
-  const statTotalEl = document.getElementById('stat-total');
-  const statUnloadEl = document.getElementById('stat-unload');
-  const statDiscardedEl = document.getElementById('stat-discarded');
-  const statPinnedEl = document.getElementById('stat-pinned');
+  const statLoadedEl = document.getElementById('stat-loaded');
   const resultEl = document.getElementById('result');
   const unloadBtn = document.getElementById('unloadBtn');
   const skipPinnedEl = document.getElementById('skipPinned');
@@ -15,11 +12,8 @@
   function refreshStats() {
     browser.tabs.query(getQuery()).then(tabs => {
       const stats = getTabStats(tabs, { skipPinned: skipPinnedEl.checked });
-      statTotalEl.textContent = `${stats.total} tab${stats.total !== 1 ? 's' : ''} total`;
-      statUnloadEl.textContent = `${stats.toUnload} can be unloaded`;
-      statDiscardedEl.textContent = `${stats.alreadyDiscarded} already unloaded`;
-      statPinnedEl.textContent = stats.pinned > 0 ? `${stats.pinned} pinned` : '';
-      unloadBtn.disabled = stats.toUnload === 0;
+      statLoadedEl.textContent = `${stats.loaded}/${stats.total} inactive tabs loaded`;
+      unloadBtn.disabled = stats.loaded === 0;
       resultEl.textContent = '';
       resultEl.className = '';
     });
