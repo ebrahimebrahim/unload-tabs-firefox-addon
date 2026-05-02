@@ -10,6 +10,7 @@ https://github.com/ebrahimebrahim/unload-tabs-firefox-addon
 
 - `npm test` — run unit tests (Node.js built-in test runner: `node --test`)
 - `npm run lint` — validate manifest and extension structure with `web-ext lint`
+- `npm run build` — produce a zipped artifact in `web-ext-artifacts/` for AMO upload (bump version in both `manifest.json` and `package.json` first)
 - `npm start` — load addon in Firefox with auto-reload via `web-ext run`
 
 ## Architecture

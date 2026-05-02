@@ -9,7 +9,7 @@ A lightweight Firefox addon that unloads all inactive tabs with one click, freei
 ## Features
 
 - One-click unloading of all inactive tabs via a toolbar button
-- Shows tab stats before you click (how many will be unloaded, how many already are)
+- Shows how many inactive tabs are currently loaded before you click
 - Option to skip pinned tabs (on by default)
 - Option to include tabs from all windows (off by default — only current window)
 - Preferences are remembered across sessions
@@ -27,8 +27,7 @@ A lightweight Firefox addon that unloads all inactive tabs with one click, freei
 3. Adjust options if needed:
    - **Skip pinned tabs** — checked by default, keeps pinned tabs loaded
    - **Include all windows** — unchecked by default, only affects the current window
-4. Click **"Unload Inactive Tabs"**
-5. The result shows how many tabs were unloaded
+4. Click **"Unload Inactive Tabs"** — the popup closes once the tabs have been unloaded
 
 Unloaded tabs remain in the tab bar. When you click an unloaded tab, Firefox reloads its content.
 
@@ -64,6 +63,14 @@ npm run lint
 ```
 
 Validates `manifest.json` and extension structure using `web-ext lint`.
+
+### Build a release artifact
+
+```bash
+npm run build
+```
+
+Produces `web-ext-artifacts/unload_tabs-<version>.zip`, suitable for uploading to [addons.mozilla.org](https://addons.mozilla.org/) as a new version. Bump the `version` in both `manifest.json` and `package.json` first.
 
 ## How it works
 
